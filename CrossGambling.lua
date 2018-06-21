@@ -252,6 +252,82 @@ function CrossGambling_ResetStats()
 end
 
 
+
+function CrossGambling_show_reset_dialog()
+  if not reset_dialog then
+    local f = CreateFrame("Frame", "UnlockDialog", UIParent)
+    f:SetFrameStrata("DIALOG")
+    f:SetToplevel(true)
+    f:EnableMouse(true)
+    f:SetMovable(true)
+    f:SetClampedToScreen(true)
+    f:SetWidth(360)
+    f:SetHeight(110)
+    f:SetBackdrop{
+      bgFile="Interface\\DialogFrame\\UI-DialogBox-Background" ,
+      edgeFile="Interface\\DialogFrame\\UI-DialogBox-Border",
+      tile = true,
+      insets = {left = 11, right = 12, top = 12, bottom = 11},
+      tileSize = 32,
+      edgeSize = 32,
+    }
+    f:SetPoint("TOP", 0, -50)
+    f:Hide()
+    f:SetScript('OnShow', function() PlaySound(SOUNDKIT and SOUNDKIT.IG_MAINMENU_OPTION or 'igMainMenuOption') end)
+    f:SetScript('OnHide', function() PlaySound(SOUNDKIT and SOUNDKIT.GS_TITLE_OPTION_EXIT or 'gsTitleOptionExit') end)
+
+    f:RegisterForDrag('LeftButton')
+    f:SetScript('OnDragStart', function(f) f:StartMoving() end)
+    f:SetScript('OnDragStop', function(f) f:StopMovingOrSizing() end)
+
+    local header = f:CreateTexture(nil, "ARTWORK")
+    header:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Header")
+    header:SetWidth(256); header:SetHeight(64)
+    header:SetPoint("TOP", 0, 12)
+
+    local title = f:CreateFontString("ARTWORK")
+    title:SetFontObject("GameFontNormal")
+    title:SetPoint("TOP", header, "TOP", 0, -14)
+    title:SetText("CrossGambling")
+
+    local desc = f:CreateFontString("ARTWORK")
+    desc:SetFontObject("GameFontHighlight")
+    desc:SetJustifyV("TOP")
+    desc:SetJustifyH("LEFT")
+    desc:SetPoint("TOPLEFT", 18, -42)
+    desc:SetPoint("BOTTOMRIGHT", -18, 48)
+    desc:SetText("Voulez-vous vraiment reset les stats ?")
+
+    local yes_button = CreateFrame("CheckButton", "Yes", f, "OptionsButtonTemplate")
+    getglobal(yes_button:GetName() .. "Text"):SetText("RESET")
+
+    yes_button:SetScript("OnClick", function(self)
+      print("Les stats ont été reset.")
+      CrossGambling_ResetStats();
+      reset_dialog:Hide()
+    end)
+
+    local no_button = CreateFrame("CheckButton", "No", f, "OptionsButtonTemplate")
+    getglobal(no_button:GetName() .. "Text"):SetText("Non")
+
+    no_button:SetScript("OnClick", function(self)
+      reset_dialog:Hide()
+    end)
+
+    --position buttons
+    yes_button:SetPoint("BOTTOMRIGHT", -210, 14)
+    no_button:SetPoint("BOTTOMRIGHT", -55, 14)
+
+    reset_dialog = f
+
+  end
+  reset_dialog:Show()
+end
+
+
+
+
+
 function CrossGambling_OnClickCHAT()
 	if(CrossGambling["chat"] == nil) then CrossGambling["chat"] = false; end
 
@@ -414,7 +490,7 @@ function CrossGambling_OnClickACCEPTONES()
 		CrossGambling_LASTCALL_Button:Disable();
 		AcceptOnes = "true";
 		local fakeroll = "";
-		SendChatMessage(format("%s%s%s%s", ".:Bienvenue dans le jeu des PO:. Pièces d'or en jeu : (", CrossGambling_EditBox:GetText(), ") - Tapez 1 pour rejoindre  (-1 pour annuler) et à la fin c'est Troll qui perd", fakeroll),chatmethod,GetDefaultLanguage("player"));
+		SendChatMessage(format("%s%s%s%s", ".:Bienvenue dans le jeu des PO:. Pièces d'or en jeu : (", CrossGambling_EditBox:GetText(), ") - Tapez 1 pour rejoindre  (-1 pour annuler) et à la fin c'est Spindel qui perd", fakeroll),chatmethod,GetDefaultLanguage("player"));
         CrossGambling["lastroll"] = CrossGambling_EditBox:GetText();
 		theMax = tonumber(CrossGambling_EditBox:GetText()); 
 		low = theMax+1;

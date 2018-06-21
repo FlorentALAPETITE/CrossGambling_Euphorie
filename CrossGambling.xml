@@ -29,7 +29,7 @@
 						</Anchor>
 					</Anchors>
 				</FontString>
-				<FontString name="version" inherits="GameFontNormal" text="|cffff3f3f(6.2.0 version)">
+				<FontString name="version" inherits="GameFontNormal" text="|cffff3f3f(7.3.5 version)">
 					<Size x="299" y="18" />
 					<Anchors>
 						<Anchor point="TOPLEFT">
@@ -37,7 +37,7 @@
 						</Anchor>
 					</Anchors>
 				</FontString>
-				<FontString inherits="GameFontNormal" text="Nostalgia@Whisperwind">
+				<FontString inherits="GameFontNormal" text="Euphorie@Hyjal">
 					<Size x="122" y="13" />
 					<Anchors>
 						<Anchor point="TOPLEFT">
@@ -83,7 +83,7 @@
 					<OnClick>
 						CrossGambling_OnClickSTATS();
 					</OnClick>
-				<OnLoad>CrossGambling_STATS_Button.tooltipText="Show's all user stats."</OnLoad>
+				<OnLoad>CrossGambling_STATS_Button.tooltipText="Montre les stats des joueurs."</OnLoad>
 				</Scripts>
 			</Button>
 			<EditBox name="CrossGambling_EditBox" letters="6">
@@ -139,9 +139,9 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						CrossGambling_ResetStats()
+						CrossGambling_show_reset_dialog()
 					</OnClick>
-				<OnLoad>CrossGambling_RESET_Button.tooltipText="Resets all Stats"</OnLoad>
+				<OnLoad>CrossGambling_RESET_Button.tooltipText="Reset toutes les stats."</OnLoad>
 				</Scripts>
 			</Button>
 			<Button name="CrossGambling_RESET1_Button" inherits="OptionsButtonTemplate" movable="true" text="Reset Game">
@@ -155,7 +155,7 @@
 						CrossGambling_Reset()
 						CrossGambling_ResetCmd()
 					</OnClick>
-				<OnLoad>CrossGambling_RESET1_Button.tooltipText="Resets The Game"</OnLoad>
+				<OnLoad>CrossGambling_RESET1_Button.tooltipText="Reset la partie."</OnLoad>
 				</Scripts>
 			</Button>
 			<Button name="CrossGambling_LASTCALL_Button" inherits="OptionsButtonTemplate" movable="true" text="Last Call">
@@ -194,7 +194,7 @@
 						CrossGambling_OnClickRoll();
 
 					</OnClick>
-				<OnLoad>CrossGambling_Roll_Button.tooltipText="Does /roll for you!"</OnLoad>
+				<OnLoad>CrossGambling_Roll_Button.tooltipText="Lance un /rand."</OnLoad>
 				</Scripts>
 			</Button>
 			
@@ -225,7 +225,7 @@
 						CrossGambling_OnClickRoll1();
 
 					</OnClick>
-					<OnLoad>CrossGambling_Type_Button.tooltipText="Type's the number one into chat"</OnLoad>
+					<OnLoad>CrossGambling_Type_Button.tooltipText="Entre dans la partie."</OnLoad>
 				</Scripts>
 			</Button>
 			<Button name="CrossGambling_CHAT_Button" inherits="OptionsButtonTemplate" text="(Raid)">
@@ -239,7 +239,7 @@
 					<OnClick>
 						CrossGambling_OnClickCHAT();
 					</OnClick>
-				<OnLoad>CrossGambling_CHAT_Button.tooltipText="Change Channels"</OnLoad>
+				<OnLoad>CrossGambling_CHAT_Button.tooltipText="Change les channels."</OnLoad>
 				</Scripts>
 			</Button>
 			
