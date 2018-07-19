@@ -22,12 +22,12 @@ local rollCmd = SLASH_RANDOM1:upper();
 
 -- LOAD FUNCTION --
 function CrossGambling_OnLoad(self)
-	DEFAULT_CHAT_FRAME:AddMessage("|cffffff00<CrossFire Gambling 0.1> loaded /cg to use");
+	DEFAULT_CHAT_FRAME:AddMessage("|cffffff00<CrossFire Gambling 0.1> loaded /crossgambling to use");
 
 	self:RegisterEvent("CHAT_MSG_RAID");
 	self:RegisterEvent("CHAT_MSG_RAID_LEADER");
 	self:RegisterEvent("CHAT_MSG_GUILD");
-	self:RegisterEvent("CHAT_MSG_GUILD_LEADER");
+	--self:RegisterEvent("CHAT_MSG_GUILD_LEADER");
 	self:RegisterEvent("CHAT_MSG_SYSTEM");
 	self:RegisterEvent("PLAYER_ENTERING_WORLD");
 	self:RegisterForDrag("LeftButton");
@@ -47,7 +47,7 @@ EventFrame:SetScript("OnEvent",function(self,event,msg,sender)
 end);
 
 local function Print(pre, red, text)
-	if red == "" then red = "/CG" end
+	if red == "" then red = "/crossgambling" end
 	DEFAULT_CHAT_FRAME:AddMessage(pre..GREEN_FONT_COLOR_CODE..red..FONT_COLOR_CODE_CLOSE..": "..text)
 end
 
@@ -118,12 +118,12 @@ function CrossGambling_SlashCmd(msg)
 	end
 
 	if (msgPrint == 0) then
-		Print("", "", "|cffffff00Invalid argument for command /cg");
+		Print("", "", "|cffffff00Invalid argument for command /crossgambling");
 	end
 end
 
 SLASH_CrossGambling1 = "/CrossGambler";
-SLASH_CrossGambling2 = "/cg";
+SLASH_CrossGambling2 = "/crossgambling";
 SlashCmdList["CrossGambling"] = CrossGambling_SlashCmd
 
 
@@ -212,7 +212,7 @@ function CrossGambling_OnEvent(self, event, ...)
 		end
 	end
 
-	if ((event == "CHAT_MSG_GUILD_LEADER" or event == "CHAT_MSG_GUILD")and AcceptOnes=="true" and CrossGambling["chat"] == false) then
+	if ((event == "CHAT_MSG_GUILD" or event == "CHAT_MSG_GUILD")and AcceptOnes=="true" and CrossGambling["chat"] == false) then
 		-- ADDS USER TO THE ROLL POOL - CHECK TO MAKE SURE THEY ARE NOT BANNED --
 		if (arg1 == "1") then
 			if(CrossGambling_ChkBan(tostring(arg2)) == 0) then
@@ -753,13 +753,13 @@ end
 
 function CrossGambling_ListBan()
 	local bancnt = 0;
-	Print("", "", "|cffffff00To ban do /cg ban (Name) or to unban /cg unban (Name) - The Current Bans:");
+	Print("", "", "|cffffff00To ban do /crossgambling ban (Name) or to unban /crossgambling unban (Name) - The Current Bans:");
 	for i=1, table.getn(CrossGambling.bans) do
 		bancnt = 1;
 		DEFAULT_CHAT_FRAME:AddMessage(strjoin("|cffffff00", "...", tostring(CrossGambling.bans[i])));
 	end
 	if (bancnt == 0) then
-		DEFAULT_CHAT_FRAME:AddMessage("|cffffff00To ban do /cg ban (Name) or to unban /cg unban (Name).");
+		DEFAULT_CHAT_FRAME:AddMessage("|cffffff00To ban do /crossgambling ban (Name) or to unban /crossgambling unban (Name).");
 	end
 end
 

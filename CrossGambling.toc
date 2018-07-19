@@ -1,4 +1,4 @@
-## Interface: 70300
+## Interface: 80000
 ## Title:|cffff7d0aCrossGambling
 ## Author: Fluttershy
 ## Version: 0.5
