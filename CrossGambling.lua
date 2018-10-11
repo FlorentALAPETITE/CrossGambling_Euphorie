@@ -1,5 +1,5 @@
-local _, CrossGambling = ...
-local L = CrossGambling.L;
+local _, CrossGambling2 = ...
+local L = CrossGambling2.L;
 local AcceptOnes = false;
 local AcceptRolls = "false";
 local AcceptLoserAmount = false;
@@ -31,7 +31,6 @@ local chatmethods = {
 	"PARTY"
 }
 local chatmethod = chatmethods[1];
-
 
 -- LOAD FUNCTION --
 function CrossGambling_OnLoad(self)
@@ -82,32 +81,32 @@ end
 
 ----- EUPHORIE -------
 
-function GetSpecialMessage(lowname, highname)
+function GetSpecialMessage(lwname, hname)
 	local returnString = ""
 
-	if (highname == "Sindalar") then
+	if (hname == "Sindalar") then
 		returnString = "Si t'as la cape de Karazhan aussi, hésite pas."
-	elseif (lowname == "Lynandrel" or lowname == "Cousinpourri") then
+	elseif (lwname == "Lynandrel" or lwname == "Cousinpourri") then
 		returnString = "Rend l'argent salaud de gobelin !"
-	elseif (highname == "Lynandrel" or highname == "Cousinpourri") then 
+	elseif (hname == "Lynandrel" or hname == "Cousinpourri") then 
 		returnString = "Enfoiré de gobelin !"
-	elseif (lowname == "Trollborg" or lowname == "Gølbørg" or lowname == "Golbørg") then
+	elseif (lwname == "Trollborg" or lwname == "Gølbørg" or lwname == "Golbørg") then
 		returnString = "J'AI ENTENDU NIQUE TA MERE"
-	elseif (highname == "Gwënhwyfar") then
+	elseif (hname == "Gwënhwyfar") then
 		returnString = "La CGT approuve."
-	elseif (lowname == "Bourrinathor" or lowname == "Seismo") then
+	elseif (lwname == "Bourrinathor" or lwname == "Seismo") then
 		returnString = "(Au passage tu peux manger ses boules)"
-	elseif (highname == "Necrodks") then
+	elseif (hname == "Necrodks") then
 		returnString = "Manquerait plus qu'il soit dans le même groupe que lui sur Kin'Garoth."
-	elseif (lowname == "Zazõu" or highname == "Zazõu") then
+	elseif (lwname == "Zazõu" or hname == "Zazõu") then
 		returnString = "WTF, Zazõu a joué ?!"
-	elseif (highname == "Swordarts") then
-		returnString = "Et bonsoir "..lowname.." !"	
-	elseif (lowname == "Sanaa") then
+	elseif (hname == "Swordarts") then
+		returnString = "Et bonsoir "..lwname.." !"	
+	elseif (lwname == "Sanaa") then
 		returnString = "Sanaa-rive qu'à elle de perdre comme ça."
-	elseif(lowname == "Choupsï") then
+	elseif(lwname == "Choupsï") then
 		returnString = "Kass pa la tèt la plï i farin, Soley va rovnir ! "
-	elseif(lowname == "Choupsï") then
+	elseif(lwname == "Choupsï") then
 		returnString = "Gro poisson i bèk sul tar !"
 	end
 
@@ -365,10 +364,12 @@ end
 function CrossGambling_OnEvent(self, event, ...)
 
 	-- LOADS ALL DATA FOR INITIALIZATION OF ADDON --
-		if (event == "PLAYER_ENTERING_WORLD") then
+		if (event == "PLAYER_ENTERING_WORLD") then			
 		CrossGambling_EditBox:SetJustifyH("CENTER");
 
-		if(not CrossGambling) then
+		if(CrossGambling == nil) then
+			print("ofkpqsfkdfsfdfs")
+
 			CrossGambling = {
 				["active"] = 1,
 				["chat"] = 1,
@@ -710,8 +711,6 @@ function CrossGambling_Report()
 	local goldowed = high - low
 	local houseCut = 0
 
-	specialMessage = GetSpecialMessage(lowname, highname)
-
 	if (CrossGambling["isHouseCut"]) then
 		houseCut = floor(goldowed * (HousePercent/100))
 		goldowed = goldowed - houseCut
@@ -720,11 +719,16 @@ function CrossGambling_Report()
 	if (goldowed ~= 0) then
 		lowname = lowname:gsub("^%l", string.upper)
 		highname = highname:gsub("^%l", string.upper)
-		local string3 = string.format(L["%s owes %s %s gold!"], lowname, highname, BreakUpLargeNumbers(goldowed))..specialMessage;
+
+		specialMessage = GetSpecialMessage(lowname, highname)
+
+		local string3 = string.format(L["%s owes %s %s gold!"], lowname, highname, BreakUpLargeNumbers(goldowed));
 
 		if (CrossGambling["isHouseCut"] and houseCut > 1) then
-			string3 = string.format(L["%s owes %s %s gold and %s gold the guild bank!"], lowname, highname, BreakUpLargeNumbers(goldowed), BreakUpLargeNumbers(houseCut))..specialMessage;
+			string3 = string.format(L["%s owes %s %s gold and %s gold the guild bank!"], lowname, highname, BreakUpLargeNumbers(goldowed), BreakUpLargeNumbers(houseCut));
 		end
+
+		string3 = string3..specialMessage
 
 		CrossGambling["stats"][highname] = (CrossGambling["stats"][highname] or 0) + goldowed;
 		CrossGambling["stats"][lowname] = (CrossGambling["stats"][lowname] or 0) - goldowed;

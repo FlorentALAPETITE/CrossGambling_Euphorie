@@ -50,7 +50,7 @@ do
         CrossGambling.L["RollSplitStringIndexesRoll"] = 4;
         CrossGambling.L["RollSplitStringIndexesRange"] = 5;
         CrossGambling.L["RollSplitJunkString"] = "obtient";
-        CrossGambling.L["%s owes %s %s gold!"] = "%s doit donner à %s %s pièces d'or !";
+        CrossGambling.L["%s owes %s %s gold!"] = "%s doit donner à %s %s pièces d'or ! ";
         CrossGambling.L["%s owes %s %s gold and %s gold the guild bank!"] = "%s doit donner à %s %s pièces d'or et mettre %s pièces d'or dans la banque de guilde !";
         CrossGambling.L["%s can now set the next gambling amount by saying !amount x"] = "%s peut maintenant décider de l'enjeu du prochain pari avec !amount x";
         CrossGambling.L["It was a tie! No payouts on this roll!"] = "C'est une égalité ! Pas de paiement pour ce pari!";
