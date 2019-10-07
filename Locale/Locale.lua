@@ -54,7 +54,7 @@ do
         CrossGambling.L["%s owes %s %s gold and %s gold the guild bank!"] = "%s doit donner à %s %s pièces d'or et mettre %s pièces d'or dans la banque de guilde !";
         CrossGambling.L["%s can now set the next gambling amount by saying !amount x"] = "%s peut maintenant décider de l'enjeu du prochain pari avec !amount x";
         CrossGambling.L["It was a tie! No payouts on this roll!"] = "C'est une égalité ! Pas de paiement pour ce pari!";
-        CrossGambling.L[".:Welcome to CrossGambling:. User's Roll - (%s) - Type 1 to Join (-1 to withdraw)"] = ".:Bienvenue dans le jeu des PO:. Pièces d'or en jeu : (%s) - Tapez 1 pour rejoindre  (-1 pour annuler) et à la fin c'est Spindel qui perd"
+        CrossGambling.L[".:Welcome to CrossGambling:. User's Roll - (%s) - Type 1 to Join (-1 to withdraw)"] = ".:Bienvenue dans le jeu des PO:. Pièces d'or en jeu : (%s) - Tapez 1 pour rejoindre  (-1 pour annuler) et à la fin c'est Nyracia qui perd"
         CrossGambling.L["Last Call to join!"] = "== Dernier appel pour jouer ! ==";
         CrossGambling.L["%s still needs to roll."] = "%s doit faire son rand.";
         CrossGambling.L["Roll now!"] = "== C'est parti pour les rands ! ==";

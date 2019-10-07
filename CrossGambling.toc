@@ -1,4 +1,4 @@
-## Interface: 80000
+## Interface: 80205
 ## Title:|cffff7d0aCrossGambling
 ## Author: Fluttershy
 ## 8.0 Maintainer: Krazyito @ Stormrage
