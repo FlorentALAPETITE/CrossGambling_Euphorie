@@ -34,7 +34,7 @@ local chatmethod = chatmethods[1];
 
 -- LOAD FUNCTION --
 function CrossGambling_OnLoad(self)
-	DEFAULT_CHAT_FRAME:AddMessage("|cffffff00<CrossFire Gambling for Warcraft 8.0.1> loaded /cg to use");
+	DEFAULT_CHAT_FRAME:AddMessage("|cffffff00<CrossFire Gambling for Warcraft 8.2.5> loaded /cg to use");
 
 	self:RegisterEvent("CHAT_MSG_RAID");
 	self:RegisterEvent("CHAT_MSG_CHANNEL");
@@ -80,38 +80,6 @@ end
 
 
 ----- EUPHORIE -------
-
-function GetSpecialMessage(lwname, hname)
-	local returnString = ""
-
-	if (hname == "Sindalar") then
-		returnString = "Si t'as la cape de Karazhan aussi, hésite pas."
-	elseif (lwname == "Lynandrel" or lwname == "Cousinpourri") then
-		returnString = "Rend l'argent salaud de gobelin !"
-	elseif (hname == "Lynandrel" or hname == "Cousinpourri") then 
-		returnString = "Enfoiré de gobelin !"
-	elseif (lwname == "Trollborg" or lwname == "Gølbørg" or lwname == "Golbørg") then
-		returnString = "J'AI ENTENDU NIQUE TA MERE"
-	elseif (hname == "Gwënhwyfar") then
-		returnString = "La CGT approuve."
-	elseif (lwname == "Bourrinathor" or lwname == "Seismo") then
-		returnString = "(Au passage tu peux manger ses boules)"
-	elseif (hname == "Necrodks") then
-		returnString = "Manquerait plus qu'il soit dans le même groupe que lui sur Kin'Garoth."
-	elseif (lwname == "Zazõu" or hname == "Zazõu") then
-		returnString = "WTF, Zazõu a joué ?!"
-	elseif (hname == "Swordarts") then
-		returnString = "Et bonsoir "..lwname.." !"	
-	elseif (lwname == "Sanaa") then
-		returnString = "Sanaa-rive qu'à elle de perdre comme ça."
-	elseif(lwname == "Choupsï") then
-		returnString = "Kass pa la tèt la plï i farin, Soley va rovnir ! "
-	elseif(lwname == "Choupsï") then
-		returnString = "Gro poisson i bèk sul tar !"
-	end
-
-	return returnString
-end
 
 function CrossGambling_show_reset_dialog()
   if not reset_dialog then
@@ -720,15 +688,11 @@ function CrossGambling_Report()
 		lowname = lowname:gsub("^%l", string.upper)
 		highname = highname:gsub("^%l", string.upper)
 
-		specialMessage = GetSpecialMessage(lowname, highname)
-
 		local string3 = string.format(L["%s owes %s %s gold!"], lowname, highname, BreakUpLargeNumbers(goldowed));
 
 		if (CrossGambling["isHouseCut"] and houseCut > 1) then
 			string3 = string.format(L["%s owes %s %s gold and %s gold the guild bank!"], lowname, highname, BreakUpLargeNumbers(goldowed), BreakUpLargeNumbers(houseCut));
 		end
-
-		string3 = string3..specialMessage
 
 		CrossGambling["stats"][highname] = (CrossGambling["stats"][highname] or 0) + goldowed;
 		CrossGambling["stats"][lowname] = (CrossGambling["stats"][lowname] or 0) - goldowed;
