@@ -457,6 +457,7 @@ end
 function CrossGambling_ResetStats()
 	CrossGambling["stats"] = { };
 	CrossGambling["house"] = 0;
+	CrossGambling["statLooser"] = nil;
 end
 
 function Minimap_Toggle()
@@ -574,6 +575,7 @@ function CrossGambling_OnClickSTATS(full)
 		if (CrossGambling["house"] > 0) then
 			ChatMsg(string.format(L["The house has taken %s total."], BreakUpLargeNumbers(CrossGambling["house"])), chatmethod);
 		end
+		CrossGambling["statLooser"] = sortlistname[#sortlistname]
 		return
 	end
 
@@ -654,7 +656,14 @@ function CrossGambling_OnClickACCEPTONES()
 			AcceptOnes = true;
 			AcceptLoserAmount = false;
 			local fakeroll = "";
-			ChatMsg(string.format(L[".:Welcome to CrossGambling:. User's Roll - (%s) - Type 1 to Join (-1 to withdraw)"], BreakUpLargeNumbers(CrossGambling_EditBox:GetText(), fakeroll)));
+
+			message = L[".:Welcome to CrossGambling:. User's Roll - (%s) - Type 1 to Join (-1 to withdraw)"]
+			statLooser = CrossGambling["statLooser"]
+			if statLooser ~= nil then
+				looserMessage = " et à la fin c'est "..statLooser.." qui perd !"
+				message = message..looserMessage
+			end
+			ChatMsg(string.format(message, BreakUpLargeNumbers(CrossGambling_EditBox:GetText(), fakeroll)));
 			CrossGambling["lastroll"] = CrossGambling_EditBox:GetText();
 			theMax = tonumber(CrossGambling_EditBox:GetText());
 			low = theMax+1;
