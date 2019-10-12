@@ -1,5 +1,6 @@
 local _, CrossGambling2 = ...
 local L = CrossGambling2.L;
+local SpecialMessages = CrossGambling2.SpecialMessages;
 local AcceptOnes = false;
 local AcceptRolls = "false";
 local AcceptLoserAmount = false;
@@ -31,6 +32,8 @@ local chatmethods = {
 	"PARTY"
 }
 local chatmethod = chatmethods[1];
+local defaultWin = "defaultWin"
+local defaultLoose = "defaultLoose"
 
 -- LOAD FUNCTION --
 function CrossGambling_OnLoad(self)
@@ -80,6 +83,33 @@ end
 
 
 ----- EUPHORIE -------
+
+function GetSpecialMessage(looser, winner)
+	winnerDict = SpecialMessages[winner]
+	looserDict = SpecialMessages[looser]
+
+	if winnerDict == nil then
+		winnerDict = {}
+	end
+	if looserDict == nil then
+		looserDict = {}
+	end
+
+	-- Get Winner to Looser specialMessage
+	specialMessage = winnerDict[looser]
+
+	-- Get Winner defaultWin specialMessage
+	if not specialMessage then
+		specialMessage = winnerDict[defaultWin]
+	end
+
+	-- Get Looser defaultLoose specialMessage
+	if not specialMessage then
+		specialMessage = looserDict[defaultLoose]
+	end
+
+	return specialMessage
+end
 
 function CrossGambling_show_reset_dialog()
   if not reset_dialog then
@@ -687,11 +717,16 @@ function CrossGambling_Report()
 	if (goldowed ~= 0) then
 		lowname = lowname:gsub("^%l", string.upper)
 		highname = highname:gsub("^%l", string.upper)
+		specialMessage = GetSpecialMessage(lowname, highname)
 
 		local string3 = string.format(L["%s owes %s %s gold!"], lowname, highname, BreakUpLargeNumbers(goldowed));
 
 		if (CrossGambling["isHouseCut"] and houseCut > 1) then
 			string3 = string.format(L["%s owes %s %s gold and %s gold the guild bank!"], lowname, highname, BreakUpLargeNumbers(goldowed), BreakUpLargeNumbers(houseCut));
+		end
+
+		if specialMessage ~= nil then
+			string3 = string3..specialMessage
 		end
 
 		CrossGambling["stats"][highname] = (CrossGambling["stats"][highname] or 0) + goldowed;

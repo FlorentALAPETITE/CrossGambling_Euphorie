@@ -13,4 +13,5 @@ CrossGambling.xml
 # Locale file
 Locale\Locale.lua
 
+SpecialMessages.lua
 CrossGambling.lua

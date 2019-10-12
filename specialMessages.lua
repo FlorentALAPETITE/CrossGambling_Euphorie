@@ -1,3 +1,0 @@
-specialMessages = {
-	
-}
