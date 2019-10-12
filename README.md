@@ -14,4 +14,7 @@ Priority for the messages is as follows :
 
 SpecialMessage.lua needs to be filled according to the inner documentation.
 
+## Recurent looser message
+The addon also includes a looser message system to update the game messages with the player that lost the most gold. To update the player name, run a full stats computation.
+
 ### This fork is no longer maintained since I left the game.
