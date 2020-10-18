@@ -1,12 +1,12 @@
-## Interface: 80205
-## Title:|cffff7d0aCrossGambling
+## Interface: 90001
+## Title:|cffff7d0aCrossGambling Euphorie
 ## Author: Fluttershy
-## 8.0 Maintainer: Krazyito @ Stormrage
-## Version: 8.0.1
+## 9.0.1 Maintainer: Sindalar
+## Version: 9.0.1
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
 ## Notes: A fun way to lose gold. Or win it.
-## URL: https://github.com/krazyito65/CrossGambling/
+## URL: https://github.com/FlorentALAPETITE/CrossGambling_Euphorie
 ## SavedVariables: CrossGambling
 CrossGambling.xml
 
