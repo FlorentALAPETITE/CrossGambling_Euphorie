@@ -35,6 +35,16 @@ local chatmethod = chatmethods[1]
 local defaultWin = "defaultWin"
 local defaultLoose = "defaultLoose"
 
+BACKDROP_DIALOG_CG = {
+	bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+	edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+	tile = true,
+	tileEdge = true,
+	tileSize = 32,
+	edgeSize = 32,
+	insets = { left = 11, right = 12, top = 12, bottom = 11 },
+};
+
 -- LOAD FUNCTION --
 function CrossGambling_OnLoad(self)
     DEFAULT_CHAT_FRAME:AddMessage("|cffffff00<CrossFire Gambling for Warcraft 8.2.5> loaded /cg to use")
@@ -123,7 +133,7 @@ end
 
 function CrossGambling_show_reset_dialog()
     if not reset_dialog then
-        local f = CreateFrame("Frame", "UnlockDialog", UIParent)
+        local f = CreateFrame("Frame", "UnlockDialog", UIParent, BackdropTemplateMixin and "BackdropTemplate")
         f:SetFrameStrata("DIALOG")
         f:SetToplevel(true)
         f:EnableMouse(true)
@@ -258,7 +268,8 @@ function CrossGambling_SlashCmd(msg)
         msgPrint = 1
     end
     if (msg == "show") then
-        CrossGambling_Frame:Show()
+		CrossGambling_Frame:Show()
+		CrossGambling_Frame:SetBackdrop(BACKDROP_DIALOG_CG)
         CrossGambling["active"] = 1
         msgPrint = 1
     end
@@ -484,7 +495,8 @@ function CrossGambling_OnEvent(self, event, ...)
             whispermethod = true
         end
         if (CrossGambling["active"] == 1) then
-            CrossGambling_Frame:Show()
+			CrossGambling_Frame:Show()
+			CrossGambling_Frame:SetBackdrop(BACKDROP_DIALOG_CG)
         else
             CrossGambling_Frame:Hide()
         end
