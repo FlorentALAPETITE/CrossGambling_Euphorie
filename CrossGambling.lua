@@ -47,7 +47,7 @@ BACKDROP_DIALOG_CG = {
 
 -- LOAD FUNCTION --
 function CrossGambling_OnLoad(self)
-    DEFAULT_CHAT_FRAME:AddMessage("|cffffff00<CrossFire Gambling for Warcraft 8.2.5> loaded /cg to use")
+    DEFAULT_CHAT_FRAME:AddMessage("|cffffff00<CrossFire Gambling Euphorie for WoW 9.0.1> loaded /cg to use")
 
     self:RegisterEvent("CHAT_MSG_RAID")
     self:RegisterEvent("CHAT_MSG_CHANNEL")
@@ -63,6 +63,7 @@ function CrossGambling_OnLoad(self)
     CrossGambling_AcceptOnes_Button:Enable()
     CrossGambling_LASTCALL_Button:Disable()
     CrossGambling_CHAT_Button:Enable()
+    self:SetBackdrop(BACKDROP_DIALOG_CG)
 end
 
 local EventFrame = CreateFrame("Frame")
@@ -269,7 +270,6 @@ function CrossGambling_SlashCmd(msg)
     end
     if (msg == "show") then
 		CrossGambling_Frame:Show()
-		CrossGambling_Frame:SetBackdrop(BACKDROP_DIALOG_CG)
         CrossGambling["active"] = 1
         msgPrint = 1
     end
@@ -496,7 +496,6 @@ function CrossGambling_OnEvent(self, event, ...)
         end
         if (CrossGambling["active"] == 1) then
 			CrossGambling_Frame:Show()
-			CrossGambling_Frame:SetBackdrop(BACKDROP_DIALOG_CG)
         else
             CrossGambling_Frame:Hide()
         end
