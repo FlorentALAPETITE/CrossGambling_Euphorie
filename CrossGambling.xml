@@ -17,7 +17,7 @@
 						</Anchor>
 					</Anchors>
 				</FontString>
-				<FontString name="version" inherits="GameFontNormal" text="|cffff3f3f(v9.0.1 - Euphorie)">
+				<FontString name="version" inherits="GameFontNormal" text="|cffff3f3f(v9.1.0 - Euphorie)">
 					<Size x="299" y="18" />
 					<Anchors>
 						<Anchor point="TOPLEFT">

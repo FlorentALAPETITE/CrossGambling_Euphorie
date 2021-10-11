@@ -5,7 +5,7 @@ This version supports French language and is translated.
 
 Originally made for the guild Euphorie (Hyjal) with the help of natinusala.
 
-**Updated for Shadowlands pre-patch (9.0.1)
+**Updated for Shadowlands 9.1.0
 
 ## SpecialMessage system
 The addon includes a generic specialMessage system : you can fill the SpecialMessage.lua file with messages that will be displayed when a specific player win or loose to the game.
