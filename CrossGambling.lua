@@ -36,8 +36,8 @@ local defaultWin = "defaultWin"
 local defaultLoose = "defaultLoose"
 
 BACKDROP_DIALOG_CG = {
-	bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
-	edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+	bgFile = "Interface\\DialogFrame\\UI-DialogBox-Gold-Background",
+	edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Gold-Border",
 	tile = true,
 	tileEdge = true,
 	tileSize = 32,
