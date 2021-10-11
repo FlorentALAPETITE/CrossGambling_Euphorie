@@ -1,8 +1,8 @@
-## Interface: 90001
+## Interface: 90100
 ## Title:|cffff7d0aCrossGambling Euphorie
 ## Author: Fluttershy
-## 9.0.1 Maintainer: Sindalar
-## Version: 9.0.1
+## 9.1.0 Maintainer: Sindalar
+## Version: 9.1.0
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
 ## Notes: A fun way to lose gold. Or win it.
