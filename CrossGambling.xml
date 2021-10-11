@@ -3,7 +3,7 @@
 	<Script file="CrossGambling.lua"/>
 	<Animation/>
 	<Frame name="CrossGambling_Frame" parent="UIParent" toplevel="true" movable="true" enableMouse="true" inherits="BackdropTemplate">
-		<Size x="320" y="150"/>
+		<Size x="390" y="165"/>
 		<Anchors>
 			<Anchor point="TOPLEFT" relativeTo="UIParent"/>
 		</Anchors>
@@ -12,7 +12,7 @@
 				<FontString name="Cross Gambling" inherits="GameFontNormal" text="Cross Gambling">
 					<Size x="298" y="19" />
 					<Anchors>
-						<Anchor point="TOPLEFT">
+						<Anchor point="TOP">
 							<Offset x="11" y="-15" />
 						</Anchor>
 					</Anchors>
@@ -20,7 +20,7 @@
 				<FontString name="version" inherits="GameFontNormal" text="|cffff3f3f(v9.1.0 - Euphorie)">
 					<Size x="299" y="18" />
 					<Anchors>
-						<Anchor point="TOPLEFT">
+						<Anchor point="TOP">
 							<Offset x="10" y="-32" />
 						</Anchor>
 					</Anchors>
@@ -54,9 +54,10 @@
 				</Scripts>
 			</Button>
 			<Button name="CrossGambling_ROLL_Button" inherits="OptionsButtonTemplate" movable="true" text="ROLL!">
+				<Size x="98" y="20"/>
 				<Anchors>
 					<Anchor point="BOTTOM">
-						<Offset x="-105" y="35" />
+						<Offset x="-120" y="41" />
 					</Anchor>
 				</Anchors>
 				<Scripts>
@@ -67,9 +68,10 @@
 			</Button>
 
 			<Button name="CrossGambling_STATS_Button" inherits="OptionsButtonTemplate" movable="true" text="Stats">
+				<Size x="98" y="20"/>
 				<Anchors>
 					<Anchor point="BOTTOM">
-						<Offset x="105" y="35" />
+						<Offset x="120" y="41" />
 					</Anchor>
 				</Anchors>
 				<Scripts>
@@ -137,7 +139,7 @@
 					<OnLoad>CrossGambling_RESET_Button.tooltipText="Reset toutes les stats."</OnLoad>
 				</Scripts>
 			</Button>
-			<Button name="CrossGambling_RESET1_Button" inherits="OptionsButtonTemplate" movable="true" text="Reset Game">
+			<Button name="CrossGambling_RESET1_Button" inherits="OptionsButtonTemplate" movable="true" text="Reset Partie">
 				<Anchors>
 					<Anchor point="BOTTOM">
 						<Offset x="3" y="20" />
@@ -151,10 +153,11 @@
 					<OnLoad>CrossGambling_RESET1_Button.tooltipText="Reset la partie en cours."</OnLoad>
 				</Scripts>
 			</Button>
-			<Button name="CrossGambling_LASTCALL_Button" inherits="OptionsButtonTemplate" movable="true" text="Last Call">
+			<Button name="CrossGambling_LASTCALL_Button" inherits="OptionsButtonTemplate" movable="true" text="Appel">
+				<Size x="98" y="20"/>
 				<Anchors>
 					<Anchor point="BOTTOM">
-						<Offset x="-105" y="55" />
+						<Offset x="-120" y="61" />
 					</Anchor>
 				</Anchors>
 				<Scripts>
@@ -163,10 +166,11 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-			<Button name="CrossGambling_AcceptOnes_Button" inherits="OptionsButtonTemplate" text="Open Entry">
+			<Button name="CrossGambling_AcceptOnes_Button" inherits="OptionsButtonTemplate" text="Démarrer">
+				<Size x="98" y="20"/>
 				<Anchors>
 					<Anchor point="BOTTOM">
-						<Offset x="-105" y="75" />
+						<Offset x="-120" y="81" />
 					</Anchor>
 				</Anchors>
 				<Scripts>
@@ -176,10 +180,11 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-			<Button name="CrossGambling_Roll_Button" inherits="OptionsButtonTemplate" text="User Roll">
+			<Button name="CrossGambling_Roll_Button" inherits="OptionsButtonTemplate" text="Roll Perso">
+				<Size x="98" y="20"/>
 				<Anchors>
 					<Anchor point="BOTTOM">
-						<Offset x="105" y="75" />
+						<Offset x="120" y="81" />
 					</Anchor>
 				</Anchors>
 				<Scripts>
@@ -191,7 +196,7 @@
 				</Scripts>
 			</Button>
 
-			<Button name="CrossGambling_Ban_Button" inherits="OptionsButtonTemplate" text="Ban List">
+			<Button name="CrossGambling_Ban_Button" inherits="OptionsButtonTemplate" text="Liste Bannis">
 				<Anchors>
 					<Anchor point="BOTTOM">
 						<Offset x="-105" y="15" />
@@ -207,10 +212,11 @@
 				</Scripts>
 			</Button>
 
-			<Button name="CrossGambling_Type_Button" inherits="OptionsButtonTemplate" text="Enter's For You">
+			<Button name="CrossGambling_Type_Button" inherits="OptionsButtonTemplate" text="Entrer en jeu">
+				<Size x="98" y="20"/>
 				<Anchors>
 					<Anchor point="BOTTOM">
-						<Offset x="105" y="55" />
+						<Offset x="120" y="61" />
 					</Anchor>
 				</Anchors>
 				<Scripts>
@@ -224,7 +230,7 @@
 			<Button name="CrossGambling_CHAT_Button" inherits="OptionsButtonTemplate" text="(Raid)">
 				<Anchors>
 					<Anchor point="TOP">
-						<Offset x="1" y="-60" />
+						<Offset x="1" y="-56" />
 					</Anchor>
 				</Anchors>
 				<Scripts>
@@ -239,16 +245,16 @@
 
 			<Button name="CG_MinimapButton" parent="Minimap" enableMouse="true" movable="true" hidden="false">
 				<Size>
-					<AbsDimension x="33" y="33"/>
+					<AbsDimension x="40" y="40"/>
 				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT"/>
 				</Anchors>
 				<Layers>
 					<Layer level="BACKGROUND">
-						<Texture name="CG_MinimapButton_Icon" file="Interface\AddOns\CrossGambling\media\icon">
+						<Texture name="CG_MinimapButton_Icon" file="Interface/ICONS/INV_Misc_TheGoldenCheep">
 							<Size>
-								<AbsDimension x="21" y="21"/>
+								<AbsDimension x="23" y="23"/>
 							</Size>
 							<Anchors>
 								<Anchor point="TOPLEFT">
