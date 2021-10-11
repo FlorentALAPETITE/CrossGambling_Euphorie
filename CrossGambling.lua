@@ -47,7 +47,7 @@ BACKDROP_DIALOG_CG = {
 
 -- LOAD FUNCTION --
 function CrossGambling_OnLoad(self)
-    DEFAULT_CHAT_FRAME:AddMessage("|cffffff00<CrossFire Gambling Euphorie for WoW 9.0.1> loaded /cg to use")
+    DEFAULT_CHAT_FRAME:AddMessage("|cffffff00<CrossFire Gambling Euphorie for WoW 9.1.0> loaded /cg to use")
 
     self:RegisterEvent("CHAT_MSG_RAID")
     self:RegisterEvent("CHAT_MSG_CHANNEL")
