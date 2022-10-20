@@ -36,18 +36,18 @@ local defaultWin = "defaultWin"
 local defaultLoose = "defaultLoose"
 
 BACKDROP_DIALOG_CG = {
-	bgFile = "Interface\\DialogFrame\\UI-DialogBox-Gold-Background",
-	edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Gold-Border",
-	tile = true,
-	tileEdge = true,
-	tileSize = 32,
-	edgeSize = 32,
-	insets = { left = 11, right = 12, top = 12, bottom = 11 },
-};
+    bgFile = "Interface\\DialogFrame\\UI-DialogBox-Gold-Background",
+    edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Gold-Border",
+    tile = true,
+    tileEdge = true,
+    tileSize = 32,
+    edgeSize = 32,
+    insets = {left = 11, right = 12, top = 12, bottom = 11}
+}
 
 -- LOAD FUNCTION --
 function CrossGambling_OnLoad(self)
-    DEFAULT_CHAT_FRAME:AddMessage("|cffffff00<CrossFire Gambling Euphorie for WoW 9.1.0> loaded /cg to use")
+    DEFAULT_CHAT_FRAME:AddMessage("|cffffff00<CrossFire Gambling Euphorie for WoW 9.2.7> loaded /cg to use")
 
     self:RegisterEvent("CHAT_MSG_RAID")
     self:RegisterEvent("CHAT_MSG_CHANNEL")
@@ -269,7 +269,7 @@ function CrossGambling_SlashCmd(msg)
         msgPrint = 1
     end
     if (msg == "show") then
-		CrossGambling_Frame:Show()
+        CrossGambling_Frame:Show()
         CrossGambling["active"] = 1
         msgPrint = 1
     end
@@ -495,7 +495,7 @@ function CrossGambling_OnEvent(self, event, ...)
             whispermethod = true
         end
         if (CrossGambling["active"] == 1) then
-			CrossGambling_Frame:Show()
+            CrossGambling_Frame:Show()
         else
             CrossGambling_Frame:Hide()
         end
@@ -721,7 +721,7 @@ end
 
 function CrossGambling_OnClickROLL()
     if (totalrolls > 0 and AcceptRolls == "true") then
-        if table.getn(CrossGambling.strings) ~= 0 then
+        if #CrossGambling.strings ~= 0 then
             CrossGambling_List()
         end
         return
@@ -879,19 +879,19 @@ function CrossGambling_Tiebreaker()
     tierolls = 0
     totalrolls = 0
     tie = 1
-    if table.getn(CrossGambling.lowtie) == 1 then
+    if #CrossGambling.lowtie == 1 then
         CrossGambling.lowtie = {}
     end
-    if table.getn(CrossGambling.hightie) == 1 then
+    if #CrossGambling.hightie == 1 then
         CrossGambling.hightie = {}
     end
-    totalrolls = table.getn(CrossGambling.lowtie) + table.getn(CrossGambling.hightie)
+    totalrolls = #CrossGambling.lowtie + #CrossGambling.hightie
     tierolls = totalrolls
-    if (table.getn(CrossGambling.hightie) == 0 and table.getn(CrossGambling.lowtie) == 0) then
+    if (#CrossGambling.hightie == 0 and #CrossGambling.lowtie == 0) then
         CrossGambling_Report()
     else
         AcceptRolls = "false"
-        if table.getn(CrossGambling.lowtie) > 0 then
+        if #CrossGambling.lowtie > 0 then
             lowbreak = 1
             highbreak = 0
             tielow = theMax + 1
@@ -900,7 +900,7 @@ function CrossGambling_Tiebreaker()
             CrossGambling.lowtie = {}
             CrossGambling_OnClickROLL()
         end
-        if table.getn(CrossGambling.hightie) > 0 and table.getn(CrossGambling.strings) == 0 then
+        if #CrossGambling.hightie > 0 and #CrossGambling.strings == 0 then
             lowbreak = 0
             highbreak = 1
             tielow = theMax + 1
@@ -929,7 +929,7 @@ function CrossGambling_ParseRoll(temp2)
         if (maxRoll == theMax and minRoll == 1) then
             if (tie == 0) then
                 if (roll == high) then
-                    if table.getn(CrossGambling.hightie) == 0 then
+                    if #CrossGambling.hightie == 0 then
                         CrossGambling_AddTie(highname, CrossGambling.hightie)
                     end
                     CrossGambling_AddTie(player, CrossGambling.hightie)
@@ -981,7 +981,7 @@ function CrossGambling_ParseRoll(temp2)
                     CrossGambling.hightie = {}
                 end
                 if (roll == low) then
-                    if table.getn(CrossGambling.lowtie) == 0 then
+                    if #CrossGambling.lowtie == 0 then
                         CrossGambling_AddTie(lowname, CrossGambling.lowtie)
                     end
                     CrossGambling_AddTie(player, CrossGambling.lowtie)
@@ -1010,7 +1010,7 @@ function CrossGambling_ParseRoll(temp2)
             else
                 if (lowbreak == 1) then
                     if (roll == tielow) then
-                        if table.getn(CrossGambling.lowtie) == 0 then
+                        if #CrossGambling.lowtie == 0 then
                             CrossGambling_AddTie(lowname, CrossGambling.lowtie)
                         end
                         CrossGambling_AddTie(player, CrossGambling.lowtie)
@@ -1023,7 +1023,7 @@ function CrossGambling_ParseRoll(temp2)
                 end
                 if (highbreak == 1) then
                     if (roll == tiehigh) then
-                        if table.getn(CrossGambling.hightie) == 0 then
+                        if #CrossGambling.hightie == 0 then
                             CrossGambling_AddTie(highname, CrossGambling.hightie)
                         end
                         CrossGambling_AddTie(player, CrossGambling.hightie)
@@ -1038,7 +1038,7 @@ function CrossGambling_ParseRoll(temp2)
             CrossGambling_Remove(tostring(player))
             totalentries = totalentries + 1
 
-            if table.getn(CrossGambling.strings) == 0 then
+            if #CrossGambling.strings == 0 then
                 if tierolls == 0 then
                     CrossGambling_Report()
                 else
@@ -1054,7 +1054,7 @@ function CrossGambling_ParseRoll(temp2)
 end
 
 function CrossGambling_Check(player)
-    for i = 1, table.getn(CrossGambling.strings) do
+    for i = 1, #CrossGambling.strings do
         if strlower(CrossGambling.strings[i]) == tostring(player) then
             return 1
         end
@@ -1063,7 +1063,7 @@ function CrossGambling_Check(player)
 end
 
 function CrossGambling_List()
-    for i = 1, table.getn(CrossGambling.strings) do
+    for i = 1, #CrossGambling.strings do
         ChatMsg(
             string.format(L["%s still needs to roll."], tostring(CrossGambling.strings[i]):gsub("^%l", string.upper))
         )
@@ -1073,7 +1073,7 @@ end
 function CrossGambling_ListBan()
     local bancnt = 0
     Print("", "", "|cffffff00To ban do /cg ban (Name) or to unban /cg unban (Name) - The Current Bans:")
-    for i = 1, table.getn(CrossGambling.bans) do
+    for i = 1, #CrossGambling.bans do
         bancnt = 1
         DEFAULT_CHAT_FRAME:AddMessage(strjoin("|cffffff00", "...", tostring(CrossGambling.bans[i])))
     end
@@ -1107,7 +1107,7 @@ function CrossGambling_Add(name)
     local insname = strlower(charname)
     if (insname ~= nil or insname ~= "") then
         local found = 0
-        for i = 1, table.getn(CrossGambling.strings) do
+        for i = 1, #CrossGambling.strings do
             if CrossGambling.strings[i] == insname then
                 found = 1
             end
@@ -1123,7 +1123,7 @@ function CrossGambling_ChkBan(name)
     local charname, realmname = strsplit("-", name)
     local insname = strlower(charname)
     if (insname ~= nil or insname ~= "") then
-        for i = 1, table.getn(CrossGambling.bans) do
+        for i = 1, #CrossGambling.bans do
             if strlower(CrossGambling.bans[i]) == strlower(insname) then
                 return 1
             end
@@ -1137,7 +1137,7 @@ function CrossGambling_AddBan(name)
     local insname = strlower(charname)
     if (insname ~= nil or insname ~= "") then
         local banexist = 0
-        for i = 1, table.getn(CrossGambling.bans) do
+        for i = 1, #CrossGambling.bans do
             if CrossGambling.bans[i] == insname then
                 Print("", "", "|cffffff00Unable to add to ban list - user already banned.")
                 banexist = 1
@@ -1158,7 +1158,7 @@ function CrossGambling_RemoveBan(name)
     local charname, realmname = strsplit("-", name)
     local insname = strlower(charname)
     if (insname ~= nil or insname ~= "") then
-        for i = 1, table.getn(CrossGambling.bans) do
+        for i = 1, #CrossGambling.bans do
             if strlower(CrossGambling.bans[i]) == strlower(insname) then
                 table.remove(CrossGambling.bans, i)
                 Print("", "", "|cffffff00User removed from ban successfully.")
@@ -1175,7 +1175,7 @@ function CrossGambling_AddTie(name, tietable)
     local insname = strlower(charname)
     if (insname ~= nil or insname ~= "") then
         local found = 0
-        for i = 1, table.getn(tietable) do
+        for i = 1, #tietable do
             if tietable[i] == insname then
                 found = 1
             end
@@ -1191,7 +1191,7 @@ end
 function CrossGambling_Remove(name)
     local charname, realmname = strsplit("-", name)
     local insname = strlower(charname)
-    for i = 1, table.getn(CrossGambling.strings) do
+    for i = 1, #CrossGambling.strings do
         if CrossGambling.strings[i] ~= nil then
             if strlower(CrossGambling.strings[i]) == strlower(insname) then
                 table.remove(CrossGambling.strings, i)
@@ -1204,7 +1204,7 @@ end
 function CrossGambling_RemoveTie(name, tietable)
     local charname, realmname = strsplit("-", name)
     local insname = strlower(charname)
-    for i = 1, table.getn(tietable) do
+    for i = 1, #tietable do
         if tietable[i] ~= nil then
             if strlower(tietable[i]) == insname then
                 table.remove(tietable, i)
